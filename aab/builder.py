@@ -43,10 +43,11 @@ import shutil
 import json
 import zipfile
 import logging
+import distutils.dir_util
 
 from six import text_type as unicode
 
-from . import PATH_DIST, PATH_ROOT
+from . import PATH_SRC, PATH_DIST, PATH_ROOT
 from .config import Config
 from .git import Git
 from .ui import UIBuilder
@@ -73,8 +74,7 @@ class AddonBuilder(object):
             sys.exit(1)
         self._callback_archive = callback_archive
         self._config = Config()
-        self._path_dist_module = PATH_DIST / \
-            "src" / self._config["module_name"]
+        self._path_dist_module = PATH_DIST / self._config["module_name"]
 
     def build(self, target="anki21", disttype="local", pyenv=None):
         
@@ -85,7 +85,7 @@ class AddonBuilder(object):
         clean_repo()
 
         PATH_DIST.mkdir(parents=True)
-        Git().archive(self._version, PATH_DIST)
+        distutils.dir_util.copy_tree(str(PATH_SRC), str(PATH_DIST))
 
         self._copy_licenses()
         if self._path_changelog.exists():
@@ -102,7 +102,7 @@ class AddonBuilder(object):
 
     def _build_ui(self, target, pyenv):
         logging.info("Building UI...")
-        UIBuilder(root=PATH_DIST).build(target=target, pyenv=pyenv)
+        UIBuilder(dist=PATH_DIST).build(target=target, pyenv=pyenv)
 
     def _package(self, target, disttype):
         logging.info("Packaging add-on...")

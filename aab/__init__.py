@@ -69,6 +69,7 @@ under certain conditions; For details please see the LICENSE file.
 # Global variables
 
 PATH_ROOT = Path.cwd()
+PATH_SRC = PATH_ROOT / "src"
 PATH_DIST = PATH_ROOT / "build" / "dist"
 PATH_PACKAGE = Path(__file__).resolve().parent
 DIST_TYPES = ["local", "ankiweb"]

@@ -46,7 +46,7 @@ from datetime import datetime
 from six import text_type as unicode
 from whichcraft import which
 
-from . import PATH_DIST, __title__, __version__
+from . import PATH_ROOT, PATH_DIST, __title__, __version__
 from .config import Config
 from .utils import relpath, call_shell
 
@@ -73,6 +73,7 @@ __all__ = [
 ]\
 """
 
+
 class UIBuilder(object):
 
     _re_munge = re.compile(r"^import .+?_rc(\n)?$", re.MULTILINE)
@@ -95,17 +96,17 @@ class UIBuilder(object):
         }
     }
 
-    def __init__(self, root=None):
-        self._root = root or PATH_DIST
+    def __init__(self, dist=None):
+        self._dist = dist or PATH_DIST
         self._config = Config()
-        gui_path = self._root / "src" / self._config["module_name"] / "gui"
+        gui_path = self._dist / self._config["module_name"] / "gui"
         self._paths = {
             "forms": {
-                "in": self._root / "designer",
+                "in": PATH_ROOT / "designer",
                 "out": gui_path / "forms"
             },
             "resources": {
-                "in": self._root / "resources",
+                "in": PATH_ROOT / "resources",
                 "out": gui_path / "resources"
             }
         }
