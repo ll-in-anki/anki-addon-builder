@@ -112,7 +112,7 @@ class AddonBuilder(object):
             to_zip = self._path_dist_module
             ext = "ankiaddon"
         else:
-            to_zip = PATH_DIST / "src"
+            to_zip = PATH_ROOT / "src"
             ext = "zip"
 
         out_name = "{repo_name}-{version}-{target}{dist}.{ext}".format(
