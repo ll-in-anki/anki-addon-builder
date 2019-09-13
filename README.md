@@ -1,10 +1,8 @@
 ## Anki Add-on Builder
 
-<a title="License: GNU AGPLv3" href="https://github.com/glutanimate/anki-addon-builder/blob/master/LICENSE"><img  src="https://img.shields.io/badge/license-GNU AGPLv3-green.svg"></a>
-<a href="https://pypi.org/project/aab/"><img src="https://img.shields.io/pypi/v/aab.svg"></a>
-<img src="https://img.shields.io/pypi/status/aab.svg">
-<img src="https://img.shields.io/pypi/dd/aab.svg">
+**Note:** this is a fork which changes how builds work, see Installation for pip instructions
 
+---
 
 An opinionated build tool for Anki add-ons. Used in most of my major Anki projects.
 
@@ -30,14 +28,13 @@ This is still very much a work-in-progress. Neither the API, nor the implementat
 
 `aab` needs to be run in an Anki development environment to work correctly. Please refer to [Anki's documentation](https://github.com/dae/anki/blob/master/README.development) for information on how to set this up.
 
-#### Installing the latest release
+#### Installing from this fork (recommended)
 
-    pip install aab
+    pip install --upgrade git+https://github.com/ll-in-anki/anki-addon-builder.git
 
-#### Installing from the master branch
+#### Installing the official release
 
-    pip install --upgrade git+https://github.com/glutanimate/anki-addon-builder.git
-
+    pip install aab  # official
 ### Usage
 
 You can get an overview of all supported actions by accessing the built-in help:
